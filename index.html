@@ -1,91 +1,11 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-
-
-<script>
-  (function () {
-    const hostname = location.hostname;
-    const pathname = location.pathname;
-    const subdomainRaw = hostname.split('.')[0];
-    const formatText = (str) => {
-      return str
-        .replace(/-/g, ' ')
-        .replace(/\b\w/g, c => c.toUpperCase());
-    };
-    const subdomain = formatText(subdomainRaw);
-    const suffix = ' ';
-
-    const pathNameClean = pathname.replace(/^\/+|\/+$/g, '');
-
-    // Membuat judul yang lebih ramah pengguna
-    let titleText = '';
-    if (!pathNameClean || pathNameClean.toLowerCase() === 'index.html') {
-      titleText = subdomain + suffix;
-    } else {
-      const fileName = pathNameClean.split('/').pop().replace(/\.html$/i, '');
-      const decoded = decodeURIComponent(fileName.replace(/[-_]/g, ' '));
-      const fileTitle = decoded.replace(/\b\w/g, c => c.toUpperCase());
-      titleText = fileTitle;
-    }
-
-    // Masukkan <title>
-    const titleTag = document.querySelector('title') || document.createElement('title');
-    titleTag.textContent = titleText;
-    if (!titleTag.parentNode) document.head.appendChild(titleTag);
-
-    // Buat <meta name="description"> jika belum ada
-    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
-    metaDescription.name = 'description';
-    metaDescription.content = 'titleText + ' - Step-by-step guides for creating and optimizing Jekyll sites on GitHub Pages — ideal for developers and content creators.';
-    if (!metaDescription.parentNode) document.head.appendChild(metaDescription);
-
-    // Buat <meta name="author"> jika belum ada
-    const metaAuthor = document.querySelector('meta[name="author"]') || document.createElement('meta');
-    metaAuthor.name = 'author';
-    metaAuthor.content = subdomain + ' team';
-    if (!metaAuthor.parentNode) document.head.appendChild(metaAuthor);
-  })();
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <script>  
-    (function() {  
-      const canonical = document.createElement('link');  
-      canonical.rel = 'canonical';  
-      let url = location.protocol + '//' + location.hostname + location.pathname;  
-      if (url.endsWith('/')) {  
-        url = url.slice(0, -1);  
-      }  
-      canonical.href = url || (location.protocol + '//' + location.hostname);  
-      document.head.appendChild(canonical);  
-    })();  
-  </script>  
-
-  <meta name="theme-color" content="#ffffff">  
-  <link rel="icon" href="https://raw.githubusercontent.com/hijiduatilu17plus3/0001/refs/heads/main/favicon.ico" type="image/x-icon">  
-  <link rel="icon" href="https://raw.githubusercontent.com/hijiduatilu17plus3/0001/refs/heads/main/favicon.png" type="image/png">  
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/hijiduatilu17plus3/0001/refs/heads/main/apple-touch-icon.png">  
-  <link rel="manifest" href="https://raw.githubusercontent.com/hijiduatilu17plus3/0001/refs/heads/main/site.webmanifest">  
-  <script type="text/javascript">  
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};  
-    m[i].l=1*new Date();  
-    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}  
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})  
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");  
-
-    ym(103370320, "init", {  
-      clickmap:true,  
-      trackLinks:true,  
-      accurateTrackBounce:true  
-    });  
-  </script>  
-  <noscript><div><img src="https://mc.yandex.ru/watch/103370320" style="position:absolute; left:-9999px;" alt="" /></div></noscript>  
-
-<link rel="preload" href="https://adabunalima5.github.io/file/css/css.css" as="style">
+  <link rel="preload" href="https://adabunalima5.github.io/file/css/css.css" as="style">
 <link rel="stylesheet" href="https://adabunalima5.github.io/file/css/css.css">
-
 <!-- Google tag (gtag.js) - multiple accounts -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WT93W2845E"></script>
 <script>
@@ -115,329 +35,50 @@
   f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NWD665DQ');
 </script>
-
-</head>  
-<body>  
-	<div class="spo">
- <!-- ads by wi3kas5alimexy.blogspot.com -->
-<script type="text/javascript">
-	atOptions = {
-		'key' : '3f672ec602df797642e9dbdfb337569e',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/3f672ec602df797642e9dbdfb337569e/invoke.js"></script>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '40f1c610090584610030c74709f82896',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/40f1c610090584610030c74709f82896/invoke.js"></script>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '0cbdb3ac944efc14e7e0fe852e3ad3a5',
-		'format' : 'iframe',
-		'height' : 600,
-		'width' : 160,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/0cbdb3ac944efc14e7e0fe852e3ad3a5/invoke.js"></script>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'a543729c95de3341d9f240b9b941edfe',
-		'format' : 'iframe',
-		'height' : 300,
-		'width' : 160,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/a543729c95de3341d9f240b9b941edfe/invoke.js"></script>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '0acda123c359e1953d2186b0a74f0364',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/0acda123c359e1953d2186b0a74f0364/invoke.js"></script>
-<script type='text/javascript' src='//pl27258148.profitableratecpm.com/fe/ec/ea/feeceae70fe7b8956ffc6e2e4f53991a.js'></script>
-<script type='text/javascript' src='//pl16804628.profitableratecpm.com/e7/19/45/e71945928ae8f99b0bee4c0d1219be5a.js'></script>
-<script type="text/javascript">
-	atOptions = {
-		'key' : '1c081498ef1d1996c45172aa313d1bdb',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/1c081498ef1d1996c45172aa313d1bdb/invoke.js"></script>
-
-</div>
-
-<main>    
+  </head>
+<body>
 
 
+<main>
+<!-- awal HASIL mengambil semua satu konten postingan dari feed blogger berdasarkan label --><div id="blog-feed"></div><!-- akhir HASIL mengambil semua satu konten postingan dari feed blogger berdasarkan label -->
 
-<!-- GALERI MELAYANG FULLSCREEN -->
-<div id="ingganinggraPopupOverlay" class="ingganinggraPopupOverlay">
-  <button class="ingganinggraPopupClose" onclick="closeIngganinggraPopup()" aria-label="Close gallery">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
-  </button>
-  <div id="ingganinggraFooterGallery" class="ingganinggraGalleryGrid"></div>
-</div>
-
-<style>
-.ingganinggraPopupOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #000;
-  overflow-y: auto;
-  z-index: 9999;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.ingganinggraPopupClose {
-  position: fixed;
-  top: 12px;
-  right: 16px;
-  background: transparent;
-  border: none;
-  padding: 6px;
-  cursor: pointer;
-  z-index: 10000;
-}
-
-.ingganinggraPopupClose svg:hover {
-  stroke: #ccc;
-}
-
-.ingganinggraGalleryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 6px;
-  margin-top: 50px;
-}
-
-.ingganinggraGalleryGrid figure {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ingganinggraGalleryGrid img {
-  max-width: 100%;
-  max-height: 100vh;
-  height: auto;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  border-radius: 4px;
-}
-</style>
-
-
-<script>          
-(function(){          
-  const blogId = "3878198361264397837";          
-  const maxResults = 480;          
-  let entries = [];          
-  let imageCounter = 1;
-
-  const overlay = document.getElementById("ingganinggraPopupOverlay");          
-  const container = document.getElementById("ingganinggraFooterGallery");          
-
-  // Ambil subdomain, hilangkan 'www', dan ubah '-' jadi spasi
-  const hostnameParts = window.location.hostname.split('.');
-  let rawSubdomain = hostnameParts.length > 2 ? hostnameParts[0] : 'default';
-  rawSubdomain = rawSubdomain === 'www' ? 'default' : rawSubdomain;
-  const formattedSubdomain = rawSubdomain.replace(/-/g, ' ').toLowerCase();
-
-  function fetchPosts() {          
-    const url = `https://www.blogger.com/feeds/${blogId}/posts/default?alt=json-in-script&max-results=${maxResults}&callback=showIngganinggraPosts`;          
-    const s = document.createElement("script");          
-    s.src = url;          
-    document.body.appendChild(s);          
-  }          
-          
-  window.showIngganinggraPosts = function(data) {          
-    if (!data.feed.entry) return;          
-          
-    const shuffled = data.feed.entry.sort(() => 0.5 - Math.random()).slice(0, 9);          
-          
-    shuffled.forEach(entry => {          
-      const content = entry.content?.$t || "";          
-      const imgMatch = content.match(/<img[^>]+src="([^"]+)"/);          
-      if (!imgMatch) return;          
-          
-      const imageUrl = imgMatch[1].replace(/\/s\d{2,4}(-c)?\//, "/s1600/");          
-      const altText = `${formattedSubdomain} - Sexy and Hot Photo ${imageCounter++}`;
-
-      entries.push(imageUrl);          
-          
-      const fig = document.createElement('figure');          
-      fig.innerHTML = `          
-        <img src="${imageUrl}" alt="${altText}" loading="lazy" />          
-      `;          
-      container.appendChild(fig);          
-          
-      const prefetch = document.createElement('link');          
-      prefetch.rel = 'prefetch';          
-      prefetch.href = imageUrl;          
-      document.head.appendChild(prefetch);          
-    });          
-          
-    overlay.style.display = "block";          
-  };          
-          
-  window.closeIngganinggraPopup = function() {          
-    overlay.style.display = "none";          
-  }          
-          
-  fetchPosts();          
-})();          
-</script>
-
-
-<style>
-.feed-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 20px 10px;
-  box-sizing: border-box;
-}
-.feed-item {
-  background: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s ease-in-out;
-}
-.feed-item:hover {
-  transform: scale(1.02);
-}
-.feed-thumb {
-  width: 100%;
-  height: auto;
-  display: block;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-.feed-title {
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 12px;
-  color: #111;
-  line-height: 1.4;
-}
-@media (max-width: 480px) {
-  .feed-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .feed-title {
-    font-size: 0.875rem;
-    padding: 10px;
-  }
-}
-</style>
-
-<div class="feed-grid">
-
-  <a class="feed-item" href="/How Do You Customize Jekyll Behavior with config yml on GitHub Pages.html">
-    <img class="feed-thumb" src="/How Do You Customize Jekyll Behavior with config yml on GitHub Pages.png" alt="How Do You Customize Jekyll Behavior with config yml on GitHub Pages" loading="lazy">
-    <div class="feed-title">How Do You Customize Jekyll Behavior with config yml on GitHub Pages</div>
-  </a>
-
-  <a class="feed-item" href="/How Do You Publish a Jekyll Site to GitHub Pages.html">
-    <img class="feed-thumb" src="/How Do You Publish a Jekyll Site to GitHub Pages.png" alt="How Do You Publish a Jekyll Site to GitHub Pages" loading="lazy">
-    <div class="feed-title">How Do You Publish a Jekyll Site to GitHub Pages</div>
-  </a>
-
-  <a class="feed-item" href="/How Can You Convert an HTML Project into a Jekyll Site Effectively.html">
-    <img class="feed-thumb" src="/How Can You Convert an HTML Project into a Jekyll Site Effectively.png" alt="How Can You Convert an HTML Project into a Jekyll Site Effectively" loading="lazy">
-    <div class="feed-title">How Can You Convert an HTML Project into a Jekyll Site Effectively</div>
-  </a>
-
-  <a class="feed-item" href="/Which GitHub Pages Type Suits Your Project.html">
-    <img class="feed-thumb" src="/Which GitHub Pages Type Suits Your Project.png" alt="Which GitHub Pages Type Suits Your Project" loading="lazy">
-    <div class="feed-title">Which GitHub Pages Type Suits Your Project</div>
-  </a>
-
-  <a class="feed-item" href="/How Do I Build a Jekyll Site on GitHub Pages.html">
-    <img class="feed-thumb" src="/How Do I Build a Jekyll Site on GitHub Pages.png" alt="How Do I Build a Jekyll Site on GitHub Pages" loading="lazy">
-    <div class="feed-title">How Do I Build a Jekyll Site on GitHub Pages</div>
-  </a>
-
-  <a class="feed-item" href="/How Can You Preview Your Jekyll Site Locally.html">
-    <img class="feed-thumb" src="/How Can You Preview Your Jekyll Site Locally.png" alt="How Can You Preview Your Jekyll Site Locally" loading="lazy">
-    <div class="feed-title">How Can You Preview Your Jekyll Site Locally</div>
-  </a>
-
-  <a class="feed-item" href="/How to install Jekyll locally for building static websites.html">
-    <img class="feed-thumb" src="/How to install Jekyll locally for building static websites.png" alt="How to install Jekyll locally for building static websites" loading="lazy">
-    <div class="feed-title">How to install Jekyll locally for building static websites</div>
-  </a>
-
-  <a class="feed-item" href="/How to Set Up Your Local Jekyll Development Environment.html">
-    <img class="feed-thumb" src="/How to Set Up Your Local Jekyll Development Environment.png" alt="How to Set Up Your Local Jekyll Development Environment" loading="lazy">
-    <div class="feed-title">How to Set Up Your Local Jekyll Development Environment</div>
-  </a>
-
-  <a class="feed-item" href="/How Do I Build a Website with GitHub Pages and Jekyll.html">
-    <img class="feed-thumb" src="/How Do I Build a Website with GitHub Pages and Jekyll.png" alt="How Do I Build a Website with GitHub Pages and Jekyll" loading="lazy">
-    <div class="feed-title">How Do I Build a Website with GitHub Pages and Jekyll</div>
-  </a>
-
-  <a class="feed-item" href="/Are GitHub Pages and Jekyll Right for Your Static Website.html">
-    <img class="feed-thumb" src="/Are GitHub Pages and Jekyll Right for Your Static Website.png" alt="Are GitHub Pages and Jekyll Right for Your Static Website" loading="lazy">
-    <div class="feed-title">Are GitHub Pages and Jekyll Right for Your Static Website</div>
-  </a>
-
-</div>
-
-
-
-
-
+<!-- awal HASIL mengambil postingan untuk poto gallery berdasarkan label-->
+<h2>More Photo</h2>
+<div id="photoGallery" class="photo-box-grid"></div>
+<!-- akhir HASIL mengambil postingan untuk poto gallery berdasarkan label-->
+	
+		<!-- awal video -->	<div style="position: relative; width: 100%; padding-top: 177.78%; background-color: #000; overflow: hidden;">
+  <video 
+    src="https://github.com/hijiduatilu17tambahsabelas/xc-0009/raw/refs/heads/main/tar%20orathai.mp4" 
+    poster="https://github.com/hijiduatilu17tambahsabelas/xc-0009/raw/refs/heads/main/tar%20orathai.jpg" 
+    controls 
+    playsinline 
+    preload="metadata"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+    Your browser does not support the video tag.
+  </video>
+</div><!-- akhir video -->
+	
+	<!-- awal HASIL ambil keyword dari feed berdasarkan label -->
 <div class="spo">
   <section id="indrixFooterGallery"></section>  
   <div class="pagination">  
     <button onclick="loadPreviousPage()" id="prevBtn" style="display: none;">Previous</button>  
     <button onclick="loadNextPage()">Next</button>  
   </div>  
-  </div>
-</main>  
+  </div><!-- akhir HASIL ambil keyword dari feed berdasarkan label -->
+  	
+</main>
 
+
+
+<!-- awal SCRIPT ambil keyword dari feed berdasarkan label -->
 <script>
 (function(){
-  const blogId = "3744972648234868485";
+  const blogId = "3849070220815751744";
   const label = "";
-  let startIndex = 100;
-  const maxResults = 47;
+  let startIndex = 1930;
+  const maxResults = 10;
   const container = document.getElementById("indrixFooterGallery");
   const prevBtn = document.getElementById("prevBtn");
   const fallbackImage = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9ZGc1m9JOOEC2Gszz7Dr1qLXswQeaIHiIbYb8r6oBPZLL-9TvoEgiF7bt-vIRi_hwV1f3BZlkR3-27vNutWCLzRXXdZhPGtgohBB5DkFppKlaf6gzsmK_8f9O3lW40xqcyTybJIfq_GWycI4xP0JfBURCRoBih-POfeWt7c9gHareCwIhB1O1a6z0Cdw/s1600/images%20%281%29.jpeg";
@@ -527,27 +168,114 @@
   fetchPosts();
 })();
 </script>
+<!-- akhir SCRIPT ambil keyword dari feed berdasarkan label -->
 
+
+
+<!-- awal DISQUS COMMENT SECTION -->
+<div class="disqus-wrapper">
+  <div id="disqus_thread"></div>
+</div>
+<script>
+  var disqus_config = function () {
+    this.page.url = window.location.href;
+    this.page.identifier = window.location.pathname;
+  };
+
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://fazri-3.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!-- akhir DISQUS COMMENT SECTION -->
+
+
+
+<!-- awal SCRIPT mengambil postingan untuk poto gallery berdasarkan label-->
+<script>
+  // Konfigurasi label dan parameter
+  const label = 'tar orathai';
+  const startIndex = 1;     // entri awal
+  const maxResults = 150;     // jumlah maksimal entri
+  const labelEncoded = encodeURIComponent(label);
+
+  const script = document.createElement('script');
+  script.src = `https://www.blogger.com/feeds/1852171549384509095/posts/default/-/${labelEncoded}?start-index=${startIndex}&max-results=${maxResults}&alt=json-in-script&callback=ishowFeed`;
+  document.body.appendChild(script);
+
+  function ishowFeed(json) {
+    const container = document.getElementById('photoGallery');
+    const entries = json.feed.entry || [];
+
+    entries.forEach(entry => {
+      const title = entry.title.$t;
+
+      // Link langsung berdasarkan judul asli (tidak dimodifikasi)
+      const postUrl = `/${title}.html`;
+
+      const content = entry.content.$t;
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = content;
+
+      const img = tempDiv.querySelector('img');
+      if (!img) return;
+
+      const image = document.createElement('img');
+      image.src = img.src;
+      image.alt = title;
+      image.loading = 'lazy';
+      image.style.width = '100%';
+      image.style.height = 'auto';
+      image.style.display = 'block';
+
+      const heading = document.createElement('h3');
+      const link = document.createElement('a');
+      link.href = postUrl;
+      link.textContent = title;
+      heading.appendChild(link);
+
+      const box = document.createElement('div');
+      box.className = 'photo-box';
+      box.appendChild(image);
+      box.appendChild(heading);
+
+      container.appendChild(box);
+    });
+  }
+</script>
+<!-- akhir SCRIPT mengambil postingan untuk poto gallery berdasarkan label-->
 
 <header>
   <a href="/" class="nav-brand" id="siteTitle">MyBlog</a>
-  <script>
-    const siteTitle = document.getElementById('siteTitle');
-    const host = window.location.hostname;
-    const parts = host.split('.');
-    let blogName = '';
+<script>
+  const siteTitle = document.getElementById('siteTitle');
+  const host = window.location.hostname;
+  const parts = host.split('.');
+  let subdomain = '';
 
-    if (parts.length >= 3) {
-      blogName = parts[parts.length - 3];
-    } else if (parts.length === 2) {
-      blogName = parts[0];
-    } else {
-      blogName = host;
-    }
+  if (parts.length >= 3) {
+    subdomain = parts.slice(0, parts.length - 2).join("-");
+  } else if (parts.length === 2) {
+    subdomain = parts[0];
+  } else {
+    subdomain = host;
+  }
 
-    blogName = blogName.charAt(0).toUpperCase() + blogName.slice(1);
-    siteTitle.textContent = blogName;
-  </script>
+  // Format: "ini-subdomain" → "Ini Subdomain"
+  const formatted = subdomain
+    .split(/[-_.]/) // pisahkan dengan -, _ atau .
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+  siteTitle.textContent = formatted;
+</script>
   <div class="nav-actions">
     <button class="nav-button" id="menuToggle" title="Menu" aria-label="Menu">
       <!-- Hamburger Icon -->
@@ -560,8 +288,6 @@
       </svg>
     </button>
   </div>
-</header>
-
 <div id="menuPanel">
   <ul>
     <li><a href="/">Home</a></li>
@@ -570,7 +296,6 @@
     <li><a href="/terms-and-conditions.html">Terms & Conditions</a></li>
   </ul>
 </div>
-
 <script>
   const toggleBtn = document.getElementById('menuToggle');
   const menuPanel = document.getElementById('menuPanel');
@@ -583,36 +308,180 @@
     iconMenu.style.display = isVisible ? 'inline' : 'none';
     iconClose.style.display = isVisible ? 'none' : 'inline';
   });
-</script> <footer style="text-align: center; padding: 30px 20px; font-size: 14px; color: #666;">  
+</script>
+</header>
 
 
-<hr /><br />
+<!--FOOTER-->
+<footer style="text-align: center; padding: 30px 20px; font-size: 14px; color: #666;">
+  <div>&copy; <span id="current-year"></span> <span id="main-heading2"></span> All rights reserved.</div>
+  <script>
+    (function () {
+      const domain = window.location.hostname;
+      const parts = domain.split(".");
+      const subdomain = parts.length > 2 ? parts[0] : "blog";
 
-    
-  
-  <div>&copy; <span id="current-year"></span> <span id="main-heading2"></span> All rights reserved.</div>  
-  <script>  
-    (function() {  
-      const domain = window.location.hostname;  
-      const parts = domain.split(".");  
-      const subdomain = parts.length > 2 ? parts[0] : "blog";  
-      const titleCase = subdomain.charAt(0).toUpperCase() + subdomain.slice(1);  
+      // Pisah dengan tanda minus lalu ubah jadi Title Case
+      const words = subdomain.split("-");
+      const formatted = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 
-      document.getElementById("current-year").textContent = new Date().getFullYear();  
-      document.getElementById("main-heading2").textContent = titleCase;  
-    })();  
-  </script>  
-</footer>  
+      const yearEl = document.getElementById("current-year");
+      const headingEl = document.getElementById("main-heading2");
 
-<div style="position:fixed; top:0; left:100%; width:100vw; height:100vh; background-color:rgba(0,0,0,0.9); color:#ffffff; display:flex; align-items:center; justify-content:space-between; font-size:6vw; text-align:center; z-index:999999; flex-wrap:wrap; gap:4px; padding:4px; box-sizing:border-box;">
-    <iframe src="https://www.youtube.com/embed/lKEJVITlTl4" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" style="width:49%;aspect-ratio:9/16;border:none;"></iframe>
-    <iframe src="https://www.youtube.com/embed/RhcJWHVYiZI" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" style="width:49%;aspect-ratio:9/16;border:none;"></iframe>
-    <iframe src="https://www.youtube.com/embed/msqycm6mPA8" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" style="width:49%;aspect-ratio:9/16;border:none;"></iframe>
-    <iframe src="https://www.youtube.com/embed/NsaXTVakis8" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" style="width:49%;aspect-ratio:9/16;border:none;"></iframe>
-  </div>
-  
+      if (yearEl && headingEl) {
+        yearEl.textContent = new Date().getFullYear();
+        headingEl.textContent = formatted;
+      }
+    })();
+  </script>
+</footer>
+
+		<div class="spo">
+ <!-- ads by wi3kas5alimexy.blogspot.com -->
+<script type="text/javascript">
+	atOptions = {
+		'key' : '3f672ec602df797642e9dbdfb337569e',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/3f672ec602df797642e9dbdfb337569e/invoke.js"></script>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '40f1c610090584610030c74709f82896',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/40f1c610090584610030c74709f82896/invoke.js"></script>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '0cbdb3ac944efc14e7e0fe852e3ad3a5',
+		'format' : 'iframe',
+		'height' : 600,
+		'width' : 160,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/0cbdb3ac944efc14e7e0fe852e3ad3a5/invoke.js"></script>
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'a543729c95de3341d9f240b9b941edfe',
+		'format' : 'iframe',
+		'height' : 300,
+		'width' : 160,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/a543729c95de3341d9f240b9b941edfe/invoke.js"></script>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '0acda123c359e1953d2186b0a74f0364',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/0acda123c359e1953d2186b0a74f0364/invoke.js"></script>
+<script type='text/javascript' src='//pl27258148.profitableratecpm.com/fe/ec/ea/feeceae70fe7b8956ffc6e2e4f53991a.js'></script>
+<script type='text/javascript' src='//pl16804628.profitableratecpm.com/e7/19/45/e71945928ae8f99b0bee4c0d1219be5a.js'></script>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '1c081498ef1d1996c45172aa313d1bdb',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/1c081498ef1d1996c45172aa313d1bdb/invoke.js"></script>
+</div>
+<!-- awal skrip mengambil semua satu konten postingan dari feed blogger berdasarkan label -->
+<script>
+  function loadFeed() {
+    const label = '8'; // Nilai tetap karena input dihapus
+    const labelEncoded = encodeURIComponent(label);
+    const feedURL = `https://www.blogger.com/feeds/1852171549384509095/posts/default/-/${labelEncoded}?alt=json-in-script&callback=showFeed`;
+
+    // Hapus script sebelumnya jika ada
+    const oldScript = document.getElementById('feedScript');
+    if (oldScript) oldScript.remove();
+
+    // Tambahkan script baru
+    const script = document.createElement('script');
+    script.id = 'feedScript';
+    script.src = feedURL;
+    document.body.appendChild(script);
+  }
+
+  function showFeed(data) {
+    const container = document.getElementById('blog-feed');
+    const entries = data.feed.entry || [];
+
+    if (entries.length === 0) {
+      container.innerHTML = '<p>Tidak ada posting dengan label tersebut.</p>';
+      return;
+    }
+
+    // Ambil <title> dari postingan pertama
+    const title = entries[0].title?.$t || 'Judul Tidak Tersedia';
+    document.title = title;
+
+    // Ambil <subtitle> dari feed, fallback ke cuplikan konten
+    let description = data.feed.subtitle?.$t;
+    if (!description) {
+      const rawContent = entries[0].content?.$t || '';
+      const stripped = rawContent.replace(/<[^>]+>/g, '').trim();
+      description = stripped.substring(0, 160);
+    }
+
+    // Tambahkan meta description ke <head>
+    let metaTag = document.querySelector('meta[name="description"]');
+    if (!metaTag) {
+      metaTag = document.createElement('meta');
+      metaTag.name = 'description';
+      document.head.appendChild(metaTag);
+    }
+    metaTag.content = description;
+
+    // Tampilkan semua postingan
+    let html = '';
+    entries.forEach(entry => {
+      const title = entry.title.$t;
+      let content = entry.content ? entry.content.$t : '(tidak ada isi)';
+      const published = new Date(entry.published.$t).toLocaleDateString();
+
+      // Gambar responsive
+      content = content.replace(/<img\b[^>]*>/gi, function(imgTag) {
+        if (imgTag.includes('style=')) {
+          return imgTag.replace(/style="[^"]*"/, 'style="max-width:100%; height:auto;"');
+        } else {
+          return imgTag.replace(/<img/, '<img style="max-width:100%; height:auto;"');
+        }
+      });
+
+      html += `
+        <article style="margin-bottom:40px; border-bottom:1px solid #ddd; padding-bottom:20px;">
+          <h1 style="color:#3366cc;">${title}</h1>
+          <div style="margin-top:10px; line-height:1.6;">${content}</div>
+               <small style="color:gray;">${published}</small>
+ </article>
+      `;
+    });
+
+    container.innerHTML = html;
+  }
+
+  // Jalankan otomatis saat halaman dimuat
+  window.onload = loadFeed;
+</script>
+<!-- akhir skrip mengambil semua satu konten postingan dari feed blogger berdasarkan label -->
 	
-</body>  
+</body>
 </html>
-
 
