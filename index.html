@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
+  <link rel="stylesheet" href="https://adabunalima5.github.io/file/css/css.css">
 
 
 <!-- awal Seo Otomatis khusus untuk Homepage -->
@@ -90,8 +90,7 @@
 </script>
 <!-- akhir Seo Otomatis khusus untuk homepage -->
 
-  <link rel="preload" href="https://adabunalima5.github.io/file/css/css.css" as="style"/>
-<link rel="stylesheet" href="https://adabunalima5.github.io/file/css/css.css"/>
+  
 <!-- Google tag (gtag.js) - multiple accounts -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WT93W2845E"></script>
 <script>
@@ -108,6 +107,10 @@
   gtag('config', 'G-W9876DR1JZ'); //asri38770@gmail.com
   gtag('config', 'G-YFK8DZ3FHK'); //raisfazriansyah4@gmail.com
   gtag('config', 'G-5RHX9ESPY6'); //simerah9250@gmail.com
+  gtag('config', 'G-59F9MSH3TZ'); //nyolspa1@gmail.com
+  gtag('config', 'G-F373NVXTWS'); //boktem78@gmail.com
+  gtag('config', 'G-137DJLDD8M'); //jsamsu226@gmail.com
+  gtag('config', 'G-ZT95SW0ZHJ'); //ninggrai@gmail.com
 </script>
 
 <!-- Google Tag Manager - ninggrai@gmail.com -->
@@ -184,7 +187,60 @@
   });
 </script>
 <main>
+<h2>Latest Post</h2>
+<div id="photoGallery" class="photo-box-grid"></div>
+<script>
+  // Konfigurasi label dan parameter
+  const label = 'Cloning the Mediumish Theme from GitHub';
+  const startIndex = 1;     // entri awal
+  const maxResults = 150;     // jumlah maksimal entri
+  const labelEncoded = encodeURIComponent(label);
 
+  const script = document.createElement('script');
+  script.src = `https://www.blogger.com/feeds/5544030658511827132/posts/default/-/${labelEncoded}?start-index=${startIndex}&max-results=${maxResults}&alt=json-in-script&callback=ishowFeed`;
+  document.body.appendChild(script);
+
+  function ishowFeed(json) {
+    const container = document.getElementById('photoGallery');
+    const entries = json.feed.entry || [];
+
+    entries.forEach(entry => {
+      const title = entry.title.$t;
+
+      // Link langsung berdasarkan judul asli (tidak dimodifikasi)
+      const postUrl = `/article/a/${title}.html`;
+
+      const content = entry.content.$t;
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = content;
+
+      const img = tempDiv.querySelector('img');
+      if (!img) return;
+
+      const image = document.createElement('img');
+      image.src = img.src;
+      image.alt = title;
+      image.loading = 'lazy';
+      image.style.width = '100%';
+      image.style.height = 'auto';
+      image.style.display = 'block';
+
+      const heading = document.createElement('h3');
+      const link = document.createElement('a');
+      link.href = postUrl;
+      link.textContent = title;
+      heading.appendChild(link);
+
+      const box = document.createElement('div');
+      box.className = 'photo-box';
+      box.appendChild(image);
+      box.appendChild(heading);
+
+      container.appendChild(box);
+    });
+  }
+</script>
+</main>
 	
 	<!-- awal HASIL ambil keyword dari feed berdasarkan label -->
 <div class="spo">
@@ -193,11 +249,8 @@
     <button onclick="loadPreviousPage()" id="prevBtn" style="display: none;">Previous</button>  
     <button onclick="loadNextPage()">Next</button>  
   </div>  
-  </div><!-- akhir HASIL ambil keyword dari feed berdasarkan label -->
-  	
-</main>
-
-
+  </div>
+<!-- akhir HASIL ambil keyword dari feed berdasarkan label -->
 
 <!-- awal SCRIPT ambil keyword dari feed berdasarkan label -->
 <script>
@@ -299,64 +352,6 @@
 
 
 
-
-
-<h2>Latest Post</h2>
-<div id="photoGallery" class="photo-box-grid"></div>
-<script>
-  // Konfigurasi label dan parameter
-  const label = 'Cloning the Mediumish Theme from GitHub';
-  const startIndex = 1;     // entri awal
-  const maxResults = 150;     // jumlah maksimal entri
-  const labelEncoded = encodeURIComponent(label);
-
-  const script = document.createElement('script');
-  script.src = `https://www.blogger.com/feeds/5544030658511827132/posts/default/-/${labelEncoded}?start-index=${startIndex}&max-results=${maxResults}&alt=json-in-script&callback=ishowFeed`;
-  document.body.appendChild(script);
-
-  function ishowFeed(json) {
-    const container = document.getElementById('photoGallery');
-    const entries = json.feed.entry || [];
-
-    entries.forEach(entry => {
-      const title = entry.title.$t;
-
-      // Link langsung berdasarkan judul asli (tidak dimodifikasi)
-      const postUrl = `/article/a/${title}.html`;
-
-      const content = entry.content.$t;
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = content;
-
-      const img = tempDiv.querySelector('img');
-      if (!img) return;
-
-      const image = document.createElement('img');
-      image.src = img.src;
-      image.alt = title;
-      image.loading = 'lazy';
-      image.style.width = '100%';
-      image.style.height = 'auto';
-      image.style.display = 'block';
-
-      const heading = document.createElement('h3');
-      const link = document.createElement('a');
-      link.href = postUrl;
-      link.textContent = title;
-      heading.appendChild(link);
-
-      const box = document.createElement('div');
-      box.className = 'photo-box';
-      box.appendChild(image);
-      box.appendChild(heading);
-
-      container.appendChild(box);
-    });
-  }
-</script>
-
-
-
 <!--FOOTER-->
 <footer style="text-align: center; padding: 30px 20px; font-size: 14px; color: #666;">
   <div>&copy; <span id="current-year"></span> <span id="main-heading2"></span> All rights reserved.</div>
@@ -383,68 +378,63 @@
   
 </footer>
 		<div class="spo">
- <!-- ads by wi3kas5alimexy.blogspot.com -->
+ <!-- ads by nengyuli -->
+
 <script type="text/javascript">
 	atOptions = {
-		'key' : '3f672ec602df797642e9dbdfb337569e',
+		'key' : '2e5dd9e80f4031bfb67a9b98392ba677',
 		'format' : 'iframe',
 		'height' : 250,
 		'width' : 300,
 		'params' : {}
 	};
 </script>
-<script type="text/javascript" src="//www.highperformanceformat.com/3f672ec602df797642e9dbdfb337569e/invoke.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="//www.highperformanceformat.com/2e5dd9e80f4031bfb67a9b98392ba677/invoke.js"></script><script type="text/javascript">
 	atOptions = {
-		'key' : '40f1c610090584610030c74709f82896',
+		'key' : '47cb8b5e4b76197cb799e3fdd4f668a5',
 		'format' : 'iframe',
 		'height' : 90,
 		'width' : 728,
 		'params' : {}
 	};
 </script>
-<script type="text/javascript" src="//www.highperformanceformat.com/40f1c610090584610030c74709f82896/invoke.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="//www.highperformanceformat.com/47cb8b5e4b76197cb799e3fdd4f668a5/invoke.js"></script><script type="text/javascript">
 	atOptions = {
-		'key' : '0cbdb3ac944efc14e7e0fe852e3ad3a5',
+		'key' : 'f084065aeb91225cc32fa0dcdffff3ec',
 		'format' : 'iframe',
 		'height' : 600,
 		'width' : 160,
 		'params' : {}
 	};
 </script>
-<script type="text/javascript" src="//www.highperformanceformat.com/0cbdb3ac944efc14e7e0fe852e3ad3a5/invoke.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="//www.highperformanceformat.com/f084065aeb91225cc32fa0dcdffff3ec/invoke.js"></script><script type="text/javascript">
 	atOptions = {
-		'key' : 'a543729c95de3341d9f240b9b941edfe',
+		'key' : 'a366635389ffd6190b542063e6275ad4',
 		'format' : 'iframe',
 		'height' : 300,
 		'width' : 160,
 		'params' : {}
 	};
 </script>
-<script type="text/javascript" src="//www.highperformanceformat.com/a543729c95de3341d9f240b9b941edfe/invoke.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="//www.highperformanceformat.com/a366635389ffd6190b542063e6275ad4/invoke.js"></script><script type="text/javascript">
 	atOptions = {
-		'key' : '0acda123c359e1953d2186b0a74f0364',
+		'key' : 'edf6a8ff9071eba241deccd7ba9ef1db',
 		'format' : 'iframe',
 		'height' : 60,
 		'width' : 468,
 		'params' : {}
 	};
 </script>
-<script type="text/javascript" src="//www.highperformanceformat.com/0acda123c359e1953d2186b0a74f0364/invoke.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="//www.highperformanceformat.com/edf6a8ff9071eba241deccd7ba9ef1db/invoke.js"></script><script type='text/javascript' src='//pl26658505.profitableratecpm.com/d4/45/72/d44572938838db6b58455c8f0f59c9ca.js'></script><script type='text/javascript' src='//pl26658476.profitableratecpm.com/a3/76/38/a376380b85101a49cfdcb9fcb387af3d.js'></script><script type="text/javascript">
 	atOptions = {
-		'key' : '1c081498ef1d1996c45172aa313d1bdb',
+		'key' : 'c2f47feba449a83a1b30572823b59474',
 		'format' : 'iframe',
 		'height' : 50,
 		'width' : 320,
 		'params' : {}
 	};
 </script>
-<script type="text/javascript" src="//www.highperformanceformat.com/1c081498ef1d1996c45172aa313d1bdb/invoke.js"></script>
--->
+<script type="text/javascript" src="//www.highperformanceformat.com/c2f47feba449a83a1b30572823b59474/invoke.js"></script>
 </div>
 
 </body>
