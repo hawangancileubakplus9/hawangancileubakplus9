@@ -4,52 +4,157 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
+<!-- awal Seo Otomatis -->
 <script>
-  (function () {
-    const hostname = location.hostname;
-    const pathname = location.pathname;
-    const subdomainRaw = hostname.split('.')[0];
+(function () {
+  const hostname = location.hostname;
+  const pathname = location.pathname;
 
-    // Bersihkan subdomain: ubah "-" jadi spasi dan kapitalisasi setiap kata
-    const formatText = (str) => {
-      return str
-        .replace(/-/g, ' ')
-        .replace(/\b\w/g, c => c.toUpperCase());
-    };
-    const subdomain = formatText(subdomainRaw);
-    const suffix = '';
+  // Ambil subdomain (abaikan www)
+  let subdomainRaw = hostname.split('.')[0];
+  if (subdomainRaw.toLowerCase() === 'www') subdomainRaw = hostname.split('.')[1] || '';
 
-    const pathNameClean = pathname.replace(/^\/+|\/+$/g, '');
+  const formatText = str => str
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
 
-    // Membuat judul yang lebih ramah pengguna
-    let titleText = '';
-    if (!pathNameClean || pathNameClean.toLowerCase() === 'index.html') {
-      titleText = subdomain + suffix;
-    } else {
-      const fileName = pathNameClean.split('/').pop().replace(/\.html$/i, '');
-      const decoded = decodeURIComponent(fileName.replace(/[-_]/g, ' '));
-      const fileTitle = decoded.replace(/\b\w/g, c => c.toUpperCase());
-      titleText = fileTitle;
-    }
+  const subdomain = formatText(subdomainRaw.trim());
+  const suffix = '';
 
-    // Masukkan <title>
-    const titleTag = document.querySelector('title') || document.createElement('title');
-    titleTag.textContent = titleText;
-    if (!titleTag.parentNode) document.head.appendChild(titleTag);
+  const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
+  let titleText;
 
-    // Buat <meta name="description"> jika belum ada
-    const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
+  if (!cleanPath || /^index\.(html?|php)$/i.test(cleanPath)) {
+    // Halaman utama → cuma subdomain
+    titleText = subdomain + suffix;
+  } else {
+    // Halaman lain → "Nama Halaman | Subdomain"
+    const fileName = cleanPath.split('/').pop().replace(/\.[^.]+$/, '');
+    const pageTitle = formatText(decodeURIComponent(fileName.trim()));
+    titleText = `${pageTitle} | ${subdomain}`;
+  }
+
+  // Title
+  let titleTag = document.querySelector('title');
+  if (!titleTag) {
+    titleTag = document.createElement('title');
+    document.head.appendChild(titleTag);
+  }
+  titleTag.textContent = titleText;
+
+  // Meta description
+  let metaDescription = document.querySelector('meta[name="description"]');
+  if (!metaDescription) {
+    metaDescription = document.createElement('meta');
     metaDescription.name = 'description';
-    metaDescription.content = '' + titleText + ' Leaked strategies for fearless brands';
-    if (!metaDescription.parentNode) document.head.appendChild(metaDescription);
+    document.head.appendChild(metaDescription);
+  }
+  const descriptionContent = `${titleText} — Leaked strategies for fearless brands`;
+  metaDescription.content = descriptionContent;
 
-    // Buat <meta name="author"> jika belum ada
-    const metaAuthor = document.querySelector('meta[name="author"]') || document.createElement('meta');
+  // Meta author
+  let metaAuthor = document.querySelector('meta[name="author"]');
+  if (!metaAuthor) {
+    metaAuthor = document.createElement('meta');
     metaAuthor.name = 'author';
-    metaAuthor.content = subdomain + ' team';
-    if (!metaAuthor.parentNode) document.head.appendChild(metaAuthor);
-  })();
+    document.head.appendChild(metaAuthor);
+  }
+  metaAuthor.content = subdomain ? `${subdomain} team` : 'Unknown';
+
+  // Ambil gambar pertama di halaman
+  let firstImage = document.querySelector('img');
+  let ogImageUrl = '';
+  if (firstImage) {
+    const src = firstImage.getAttribute('src');
+    ogImageUrl = src.startsWith('http') ? src : location.origin + (src.startsWith('/') ? src : '/' + src);
+  } else {
+    // fallback gambar default
+    ogImageUrl = location.origin + '/default-og-image.jpg';
+  }
+
+  // Helper untuk tambah/update meta
+  const setMeta = (attr, key, value) => {
+    let selector = attr === 'property' ? `meta[property="${key}"]` : `meta[name="${key}"]`;
+    let meta = document.querySelector(selector);
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute(attr, key);
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', value);
+  };
+
+  // OG tags
+  setMeta('property', 'og:title', titleText);
+  setMeta('property', 'og:description', descriptionContent);
+  setMeta('property', 'og:image', ogImageUrl);
+  setMeta('property', 'og:url', location.href);
+  setMeta('property', 'og:type', 'website');
+
+  // Twitter Card tags
+  setMeta('name', 'twitter:card', 'summary_large_image');
+  setMeta('name', 'twitter:title', titleText);
+  setMeta('name', 'twitter:description', descriptionContent);
+  setMeta('name', 'twitter:image', ogImageUrl);
+  setMeta('name', 'twitter:site', '@yourbrand'); // Ganti sesuai brand
+
+  // ✅ (1) Structured Data (Schema.org)
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": titleText,
+    "description": descriptionContent,
+    "image": [ogImageUrl],
+    "author": {
+      "@type": "Organization",
+      "name": subdomain ? `${subdomain} team` : "Unknown"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": subdomain,
+      "logo": {
+        "@type": "ImageObject",
+        "url": location.origin + "/default-og-image.jpg"
+      }
+    },
+    "url": location.href,
+    "datePublished": new Date().toISOString(),
+    "dateModified": new Date().toISOString()
+  };
+  let schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify(schemaData);
+  document.head.appendChild(schemaScript);
+
+  // ✅ (2) Canonical URL
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonical);
+  }
+  canonical.setAttribute('href', location.origin + pathname.replace(/\/index\.(html?|php)$/i, '/'));
+
+  // ✅ (3) Meta robots
+  let metaRobots = document.querySelector('meta[name="robots"]');
+  if (!metaRobots) {
+    metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    document.head.appendChild(metaRobots);
+  }
+  metaRobots.content = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+
+  // ✅ (4) Preload OG image
+  let preloadImg = document.createElement('link');
+  preloadImg.rel = 'preload';
+  preloadImg.as = 'image';
+  preloadImg.href = ogImageUrl;
+  document.head.appendChild(preloadImg);
+
+})();
 </script>
+<!-- akhir Seo Otomatis -->
+
   <link rel="preload" href="https://adabunalima5.github.io/file/css/css.css" as="style"/>
 <link rel="stylesheet" href="https://adabunalima5.github.io/file/css/css.css"/>
 <!-- Google tag (gtag.js) - multiple accounts -->
