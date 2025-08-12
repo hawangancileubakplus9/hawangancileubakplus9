@@ -69,7 +69,7 @@
     ogImageUrl = src.startsWith('http') ? src : location.origin + (src.startsWith('/') ? src : '/' + src);
   } else {
     // fallback gambar default
-    ogImageUrl = location.origin + '/default-og-image.jpg';
+    ogImageUrl = location.origin + '/photo/fallback.png';
   }
 
   // Helper untuk tambah/update meta
@@ -514,4 +514,3 @@
 
 </body>
 </html>
-
