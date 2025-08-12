@@ -25,10 +25,8 @@
   let titleText;
 
   if (!cleanPath || /^index\.(html?|php)$/i.test(cleanPath)) {
-    // Halaman utama → cuma subdomain
     titleText = subdomain + suffix;
   } else {
-    // Halaman lain → "Nama Halaman | Subdomain"
     const fileName = cleanPath.split('/').pop().replace(/\.[^.]+$/, '');
     const pageTitle = formatText(decodeURIComponent(fileName.trim()));
     titleText = `${pageTitle} | ${subdomain}`;
@@ -68,11 +66,9 @@
     const src = firstImage.getAttribute('src');
     ogImageUrl = src.startsWith('http') ? src : location.origin + (src.startsWith('/') ? src : '/' + src);
   } else {
-    // fallback gambar default
     ogImageUrl = location.origin + '/photo/fallback.png';
   }
 
-  // Helper untuk tambah/update meta
   const setMeta = (attr, key, value) => {
     let selector = attr === 'property' ? `meta[property="${key}"]` : `meta[name="${key}"]`;
     let meta = document.querySelector(selector);
@@ -90,13 +86,6 @@
   setMeta('property', 'og:image', ogImageUrl);
   setMeta('property', 'og:url', location.href);
   setMeta('property', 'og:type', 'website');
-
-  // Twitter Card tags
-  setMeta('name', 'twitter:card', 'summary_large_image');
-  setMeta('name', 'twitter:title', titleText);
-  setMeta('name', 'twitter:description', descriptionContent);
-  setMeta('name', 'twitter:image', ogImageUrl);
-  setMeta('name', 'twitter:site', '@yourbrand'); // Ganti sesuai brand
 
   // ✅ (1) Structured Data (Schema.org)
   const schemaData = {
@@ -514,3 +503,4 @@
 
 </body>
 </html>
+
