@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-<!-- awal Seo Otomatis -->
+
+
+<!-- awal Seo Otomatis khusus untuk Homepage -->
 <script>
 (function () {
   const hostname = location.hostname;
   const pathname = location.pathname;
 
-  // Ambil subdomain (abaikan www)
   let subdomainRaw = hostname.split('.')[0];
   if (subdomainRaw.toLowerCase() === 'www') subdomainRaw = hostname.split('.')[1] || '';
 
@@ -19,130 +20,76 @@
     .replace(/\b\w/g, c => c.toUpperCase());
 
   const subdomain = formatText(subdomainRaw.trim());
-  const suffix = '';
-
   const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
-  let titleText;
+  const isHome = !cleanPath || /^index\.(html?|php)$/i.test(cleanPath);
 
-  if (!cleanPath || /^index\.(html?|php)$/i.test(cleanPath)) {
-    titleText = subdomain + suffix;
-  } else {
-    const fileName = cleanPath.split('/').pop().replace(/\.[^.]+$/, '');
-    const pageTitle = formatText(decodeURIComponent(fileName.trim()));
-    titleText = `${pageTitle} | ${subdomain}`;
-  }
+  let titleText = isHome
+    ? subdomain
+    : `${formatText(decodeURIComponent(cleanPath.split('/').pop().replace(/\.[^.]+$/, '').trim()))} | ${subdomain}`;
 
   // Title
-  let titleTag = document.querySelector('title');
-  if (!titleTag) {
-    titleTag = document.createElement('title');
-    document.head.appendChild(titleTag);
-  }
+  let titleTag = document.querySelector('title') || document.createElement('title');
   titleTag.textContent = titleText;
+  if (!titleTag.parentNode) document.head.appendChild(titleTag);
 
   // Meta description
-  let metaDescription = document.querySelector('meta[name="description"]');
-  if (!metaDescription) {
-    metaDescription = document.createElement('meta');
-    metaDescription.name = 'description';
-    document.head.appendChild(metaDescription);
-  }
-  const descriptionContent = `${titleText} — Leaked strategies for fearless brands`;
-  metaDescription.content = descriptionContent;
+  let metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
+  metaDescription.name = 'description';
+  metaDescription.content = `${subdomain} — Discover our latest content, tips, and strategies.`;
+  if (!metaDescription.parentNode) document.head.appendChild(metaDescription);
 
   // Meta author
-  let metaAuthor = document.querySelector('meta[name="author"]');
-  if (!metaAuthor) {
-    metaAuthor = document.createElement('meta');
-    metaAuthor.name = 'author';
-    document.head.appendChild(metaAuthor);
-  }
-  metaAuthor.content = subdomain ? `${subdomain} team` : 'Unknown';
+  let metaAuthor = document.querySelector('meta[name="author"]') || document.createElement('meta');
+  metaAuthor.name = 'author';
+  metaAuthor.content = `${subdomain} team`;
+  if (!metaAuthor.parentNode) document.head.appendChild(metaAuthor);
 
-  // Ambil gambar pertama di halaman
+  // OG image
   let firstImage = document.querySelector('img');
-  let ogImageUrl = '';
-  if (firstImage) {
-    const src = firstImage.getAttribute('src');
-    ogImageUrl = src.startsWith('http') ? src : location.origin + (src.startsWith('/') ? src : '/' + src);
-  } else {
-    ogImageUrl = location.origin + '/photo/fallback.png';
-  }
+  let ogImageUrl = firstImage
+    ? (firstImage.src.startsWith('http') ? firstImage.src : location.origin + '/' + firstImage.src)
+    : location.origin + '/photo/fallback.png';
 
   const setMeta = (attr, key, value) => {
-    let selector = attr === 'property' ? `meta[property="${key}"]` : `meta[name="${key}"]`;
-    let meta = document.querySelector(selector);
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.setAttribute(attr, key);
-      document.head.appendChild(meta);
-    }
+    let meta = document.querySelector(`${attr === 'property' ? 'meta[property' : 'meta[name'}="${key}"]`) || document.createElement('meta');
+    meta.setAttribute(attr, key);
     meta.setAttribute('content', value);
+    if (!meta.parentNode) document.head.appendChild(meta);
   };
 
-  // OG tags
   setMeta('property', 'og:title', titleText);
-  setMeta('property', 'og:description', descriptionContent);
+  setMeta('property', 'og:description', metaDescription.content);
   setMeta('property', 'og:image', ogImageUrl);
   setMeta('property', 'og:url', location.href);
   setMeta('property', 'og:type', 'website');
 
-  // ✅ (1) Structured Data (Schema.org)
+  // Schema.org WebSite
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": titleText,
-    "description": descriptionContent,
-    "image": [ogImageUrl],
-    "author": {
-      "@type": "Organization",
-      "name": subdomain ? `${subdomain} team` : "Unknown"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": subdomain,
-      "logo": {
-        "@type": "ImageObject",
-        "url": location.origin + "/default-og-image.jpg"
-      }
-    },
-    "url": location.href,
-    "datePublished": new Date().toISOString(),
-    "dateModified": new Date().toISOString()
+    "@type": "WebSite",
+    "name": subdomain,
+    "url": location.origin,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${location.origin}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
   };
   let schemaScript = document.createElement('script');
   schemaScript.type = 'application/ld+json';
   schemaScript.textContent = JSON.stringify(schemaData);
   document.head.appendChild(schemaScript);
 
-  // ✅ (2) Canonical URL
-  let canonical = document.querySelector('link[rel="canonical"]');
-  if (!canonical) {
-    canonical = document.createElement('link');
-    canonical.setAttribute('rel', 'canonical');
-    document.head.appendChild(canonical);
-  }
-  canonical.setAttribute('href', location.origin + pathname.replace(/\/index\.(html?|php)$/i, '/'));
-
-  // ✅ (3) Meta robots
-  let metaRobots = document.querySelector('meta[name="robots"]');
-  if (!metaRobots) {
-    metaRobots = document.createElement('meta');
-    metaRobots.name = 'robots';
-    document.head.appendChild(metaRobots);
-  }
-  metaRobots.content = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
-
-  // ✅ (4) Preload OG image
-  let preloadImg = document.createElement('link');
-  preloadImg.rel = 'preload';
-  preloadImg.as = 'image';
-  preloadImg.href = ogImageUrl;
-  document.head.appendChild(preloadImg);
+  // Canonical
+  let canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+  canonical.setAttribute('rel', 'canonical');
+  canonical.setAttribute('href', location.origin + '/');
+  if (!canonical.parentNode) document.head.appendChild(canonical);
 
 })();
 </script>
-<!-- akhir Seo Otomatis -->
+<!-- akhir Seo Otomatis khusus untuk homepage -->
+
 
   <link rel="preload" href="https://adabunalima5.github.io/file/css/css.css" as="style"/>
 <link rel="stylesheet" href="https://adabunalima5.github.io/file/css/css.css"/>
