@@ -80,16 +80,15 @@
   schemaScript.textContent = JSON.stringify(schemaData);
   document.head.appendChild(schemaScript);
 
-  // Canonical
+  // Canonical otomatis sesuai halaman saat ini
   let canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
   canonical.setAttribute('rel', 'canonical');
-  canonical.setAttribute('href', location.origin + '/');
+  canonical.setAttribute('href', location.href);
   if (!canonical.parentNode) document.head.appendChild(canonical);
 
 })();
 </script>
 <!-- akhir Seo Otomatis khusus untuk homepage -->
-
 
   <link rel="preload" href="https://adabunalima5.github.io/file/css/css.css" as="style"/>
 <link rel="stylesheet" href="https://adabunalima5.github.io/file/css/css.css"/>
